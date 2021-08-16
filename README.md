@@ -30,32 +30,36 @@ python run.py --root-dir data --save-dir output
 ## Directory Structure:
 The program expects follwing directory structure in the path specified by --root-dir argument:
 
+```
 root
-	subdir1
-		imagex.png
-		imagey.png
-	subdir2
-		imagex.png
-		imgey.png
-	...
+|___ subdir1
+|    |___ imagex.png
+|	 |___ imagey.png
+|___ subdir2
+|	 |___ imagex.png
+|	 |___ imagey.png
+|___ ...
+```
 
 ## Outputs:
 
 Output directory structure is something like this:
+```
 output
-	subdir1
-		montage.png
-		ssim_map.png
-		ssim_val.txt
-	subdir2
-		montage.png
-		ssim_map.png
-		ssim_val.txt
-	...
+|___ subdir1
+|	 |___ montage.png
+|	 |___ ssim_map.png
+|	 |___ ssim_val.txt
+|___ subdir2
+|	 |___ montage.png
+|	 |___ ssim_map.png
+|	 |___ ssim_val.txt
+|___ ...
+```
 
 ### Notes on SSIM Values and Maps:
 
-1. SSIM value in scikit-img is supposed to have the same results as in the original Matlab implementation by Wang et al in "Image quality assessment: From error visibility to structural similarity". 
+1. SSIM value in scikit-image is supposed to have the same results as in the original Matlab implementation by Wang et al in "Image quality assessment: From error visibility to structural similarity". 
 These values are slightly **different** from the built-in Matlab implementation of SSIM
 
 2. Scikit-img has a range of [-1, 1] for pixel level SSIM. Hence the results have some negative values as well in the SSIM map. In order to save the SSIM map, I have normalized the range between [0, 1] by doing (1 + SSIM) / 2. I am not sure how Matlab internally handles it, if you have better ideas, I would be happy to implement. 
