@@ -47,13 +47,13 @@ Output directory structure is something like this:
 ```
 output
 |___ subdir1
-|	    |___ montage.png
-|	    |___ ssim_map.png
-|	    |___ ssim_val.txt
+|     |___ montage.png
+|     |___ ssim_map.png
+|     |___ ssim_val.txt
 |___ subdir2
-|	    |___ montage.png
-|	    |___ ssim_map.png
-|	    |___ ssim_val.txt
+|     |___ montage.png
+|     |___ ssim_map.png
+|     |___ ssim_val.txt
 |___ ...
 ```
 
