@@ -33,11 +33,11 @@ The program expects follwing directory structure in the path specified by --root
 ```
 root
 |___ subdir1
-|    |___ imagex.png
-|	   |___ imagey.png
+|     |___ imagex.png
+|     |___ imagey.png
 |___ subdir2
-|	   |___ imagex.png
-|	   |___ imagey.png
+|     |___ imagex.png
+|     |___ imagey.png
 |___ ...
 ```
 
@@ -62,4 +62,4 @@ output
 1. SSIM value in scikit-image is supposed to have the same results as in the original Matlab implementation by Wang et al in "Image quality assessment: From error visibility to structural similarity". 
 These values are slightly **different** from the built-in Matlab implementation of SSIM
 
-2. Scikit-img has a range of [-1, 1] for pixel level SSIM. Hence the results have some negative values as well in the SSIM map. In order to save the SSIM map, I have normalized the range between [0, 1] by doing (1 + SSIM) / 2. I am not sure how Matlab internally handles it, if you have better ideas, I would be happy to implement. 
+2. Scikit-image has a range of [-1, 1] for pixel level SSIM. Hence the results have some negative values as well in the SSIM map. In order to save the SSIM map, I have normalized the range between [0, 1] by doing (1 + SSIM) / 2. I am not sure how Matlab internally handles it, if you have better ideas, I would be happy to implement. 
