@@ -34,10 +34,10 @@ The program expects follwing directory structure in the path specified by --root
 root
 |___ subdir1
 |    |___ imagex.png
-|	 |___ imagey.png
+|	   |___ imagey.png
 |___ subdir2
-|	 |___ imagex.png
-|	 |___ imagey.png
+|	   |___ imagex.png
+|	   |___ imagey.png
 |___ ...
 ```
 
@@ -47,13 +47,13 @@ Output directory structure is something like this:
 ```
 output
 |___ subdir1
-|	 |___ montage.png
-|	 |___ ssim_map.png
-|	 |___ ssim_val.txt
+|	    |___ montage.png
+|	    |___ ssim_map.png
+|	    |___ ssim_val.txt
 |___ subdir2
-|	 |___ montage.png
-|	 |___ ssim_map.png
-|	 |___ ssim_val.txt
+|	    |___ montage.png
+|	    |___ ssim_map.png
+|	    |___ ssim_val.txt
 |___ ...
 ```
 
