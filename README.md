@@ -26,6 +26,7 @@ python run.py --root-dir data --save-dir output
 2. --save-dir (default: output): Path where to save the output images and results
 3. --img-types (default: ['png', 'jpg']): A lsit of image types (extensions) to look for in each sub-direcotry. You can choose any number of values from ['jpg','jpeg','png','tiff','bmp','gif']
 4. --force-resize (default: False): SBy default, the program ignores the image pairs who does not have matching aspect ratios, as resizing such images will distort the images. Set this argument if you want to force resize all images irrespective of their aspect ratio.
+5. --norm (default: 'abs'): How to normalize negative vlaues in the ssim map. 'abs' will take absolute values, while scale will resecale the range between [0, 1]'
 
 ## Directory Structure:
 The program expects follwing directory structure in the path specified by --root-dir argument:
@@ -62,4 +63,4 @@ output
 1. SSIM value in scikit-image is supposed to have the same results as in the original Matlab implementation by Wang et al in "Image quality assessment: From error visibility to structural similarity". 
 These values are slightly **different** from the built-in Matlab implementation of SSIM
 
-2. Scikit-image has a range of [-1, 1] for pixel level SSIM. Hence the results have some negative values as well in the SSIM map. In order to save the SSIM map, I have normalized the range between [0, 1] by doing (1 + SSIM) / 2. I am not sure how Matlab internally handles it, if you have better ideas, I would be happy to implement. 
+2. Scikit-image has a range of [-1, 1] for pixel level SSIM. Hence the results have some negative values as well in the SSIM map. I have applied two different normalization. Absolute, where signs of negative values are changed t positives. Rescale, where ssim map is normalized in the range between [0, 1] by doing (1 + SSIM) / 2. I am not sure how Matlab internally handles it, if you have better ideas, I would be happy to implement. 
