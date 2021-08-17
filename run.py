@@ -47,7 +47,7 @@ def resize_images(img1, img2, force=False):
 		return img1, resized2, True
 
 
-def get_ssim(img1, img2, force_resize=False):
+def get_ssim(img1, img2, norm='abs', force_resize=False):
 	'''
 	Inputs:
 	img1: PIL image
@@ -74,9 +74,11 @@ def get_ssim(img1, img2, force_resize=False):
 									data_range=gray_img2.max() - gray_img2.min())
 		
 		
-		ssim_map = ((1 + ssim_map) /2 *255).astype(np.uint8)
+		if norm == 'scale':
+			ssim_map = ((1 + ssim_map) /2 *255).astype(np.uint8)
+		elif norm == 'abs':
+			ssim_map = (np.abs(ssim_map)*255).astype(np.uint8)
 
-		
 		ssim_map = Image.fromarray(ssim_map, 'L')
 		return ssim_val, ssim_map
 	else:
@@ -123,7 +125,7 @@ def main(args):
 		images = [Image.open(os.path.join(path, x)) for x in image_paths]
 
 		montage = get_montage(images)
-		ssim_val, ssim_map = get_ssim(images[0], images[1], args.force_resize)
+		ssim_val, ssim_map = get_ssim(images[0], images[1], args.norm, args.force_resize)
 
 		if ssim_val is not None and ssim_map is not None:
 			save_results(os.path.join(args.save_dir, name), ssim_val, ssim_map, montage)
@@ -145,6 +147,9 @@ if __name__ == '__main__':
 	parser.add_argument('--force-resize', '--force_resize', action='store_true',
 						help='Use this argument to calcualte SSIM for image pairs whose aspect ratios do not match.'\
 							'By default, the program ignores such pairs.')
+	parser.add_argument('--norm', default='abs', choices=['abs', 'scale'],
+						help='How to normalize negative vlaues in the ssim map.'\
+							'abs will take absolute values, while scale will resecale the range between [0,1]')
 	
 	args = parser.parse_args()
 
